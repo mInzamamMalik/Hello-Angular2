@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
+import { MainServiceService } from './main-service.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -16,6 +17,10 @@ export const firebaseConfig = {
     databaseURL: "https://test-project-5a3f4.firebaseio.com",
     storageBucket: "test-project-5a3f4.appspot.com",
     messagingSenderId: "523897901107"
+};
+const firebaseAuthConfig = {
+    provider: AuthProviders.Google,
+    method: AuthMethods.Redirect
 };
 
 const appRoutes: Routes = [
@@ -38,16 +43,16 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         LoginComponent,
-        SignupComponent,
+        SignupComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
         RouterModule.forRoot(appRoutes),
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
     ],
-    providers: [],
+    providers: [MainServiceService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,12 +3,31 @@
 
 <form action="">
     <label for="">Email:</label> <br/>
-    <input [value]="source-property" /> <br/>
-    <label for="">Password:</label> <br/>
-    <input [value]="source-property" /> <br/>
-    <button (click)="event-handler()">Login</button>
-    <p>dont have an account, <a routerLink="/signup" routerLinkActive="active">create one</a></p>
+    <input (input)="data.email=$event.target.value" /> <br/>
 
+    <label for="">Password:</label> <br/>
+    <input (input)="data.password=$event.target.value" /> <br/>
+
+    <button (click)="login(data.email,data.password)">Login</button>
+    <p>dont have an account, <a routerLink="/signup" routerLinkActive="active">create one</a></p>
+    
+    <br>
+
+    <div [hidden]="!(af.auth | async)"> logged in as: {{ (af.auth | async)?.auth.email }} </div>
+    <button [hidden]="!(af.auth | async)" (click)="logout()">Logout</button>
+
+    <br>
+    <br>
+    <br>
+
+    <button (click)="facebookLogin()">Facebook Login</button>
+    <button (click)="twitterLogin()">Twitter Login</button>
+    <button (click)="githubLogin()">Github Login</button>
+    <button (click)="googleLogin()">Google Login</button>
+
+
+    <br>
+    <br>
 
     <button (click)="httpCall()">http get</button>
     <button (click)="signupCall()">http post</button>
