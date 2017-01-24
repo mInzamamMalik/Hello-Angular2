@@ -1,14 +1,21 @@
 <h2>Signup Page: </h2>
 <form action="">
     <label for="">First Name:</label> <br/>
-    <input [value]="source-property" /> <br/>
+    <input (input)="data.lName=$event.target.value" /> <br/>
+
     <label for="">Last Name: </label> <br/>
-    <input [value]="source-property" /> <br/>
+    <input (input)="data.fName=$event.target.value"/> <br/>
+    
     <label for="">Email:</label> <br/>
-    <input [value]="source-property" /> <br/>
+    <input (input)="data.email=$event.target.value" /> <br/>
+    
     <label for="">Password:</label> <br/>
-    <input [value]="source-property" /> <br/>
-    <button (click)="event-handler()">Signup</button>
+    <input (input)="data.password=$event.target.value" /> <br/>
+
+    
+    <button (click)="signup()">Signup</button>
 
     <p>Already have an account, <a routerLink="/login" routerLinkActive="active">Login</a> </p>
+
+    <p>{{data}}</p>
 </form>
