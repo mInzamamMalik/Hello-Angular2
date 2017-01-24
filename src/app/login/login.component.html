@@ -12,5 +12,12 @@
 
     <button (click)="httpCall()">http get</button>
     <button (click)="signupCall()">http post</button>
-    
+
+    <ol>
+        <p>data comming from firebase:</p>
+        <li class="text" *ngFor="let item of items | async">
+            {{item.$value}}
+        </li>
+    </ol>
+
 </form>

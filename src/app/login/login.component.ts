@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestOptions, Request, RequestMethod, Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
     selector: 'app-login',
@@ -9,7 +10,11 @@ import 'rxjs/add/operator/catch'
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    constructor(private http: Http) { }
+    constructor(private http: Http, private af: AngularFire) {
+        this.items = af.database.list('/items');
+    }
+    items: FirebaseListObservable<any[]>;
+    
     ngOnInit() {
     }
     httpCall = () => {

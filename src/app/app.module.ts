@@ -3,10 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+
+// Must export the config of firebase
+export const firebaseConfig = {
+    apiKey: "AIzaSyDspeNWtv6xycKzfsFA2mcVWxIYaKA1Mkk",
+    authDomain: "test-project-5a3f4.firebaseapp.com",
+    databaseURL: "https://test-project-5a3f4.firebaseio.com",
+    storageBucket: "test-project-5a3f4.appspot.com",
+    messagingSenderId: "523897901107"
+};
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -21,7 +31,7 @@ const appRoutes: Routes = [
     //     redirectTo: '/heroes',
     //     pathMatch: 'full'
     // },
-     { path: '**', component: LoginComponent }
+    { path: '**', component: LoginComponent }
 ];
 
 @NgModule({
@@ -34,8 +44,8 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes)
-
+        RouterModule.forRoot(appRoutes),
+        AngularFireModule.initializeApp(firebaseConfig)
     ],
     providers: [],
     bootstrap: [AppComponent]
